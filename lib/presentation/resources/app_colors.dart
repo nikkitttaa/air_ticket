@@ -1,10 +1,9 @@
-import 'package:air_tickets/extensions/hex_color.dart';
-import 'package:flutter/material.dart';
+part of presentation_resources;
 
 class AppColors {
   static Color black = HexColor.fromHex('#0C0C0C');
   static Color grey1 = HexColor.fromHex('#1D1E20');
-  static Color grey2 = HexColor.fromHex('#2F3035');
+  static Color grey2 = HexColor.fromHex('#242529');
   static Color grey3 = HexColor.fromHex('#2F3035');
   static Color grey4 = HexColor.fromHex('#3E3F43');
   static Color grey5 = HexColor.fromHex('#5E5F61');
