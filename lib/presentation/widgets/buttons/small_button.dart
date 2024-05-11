@@ -78,32 +78,44 @@ class SmallButton {
     required VoidCallback onPressed,
     required String text,
     String? icon,
+    Color? iconColor,
+    String? subtext,
   }) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
           padding: MaterialStateProperty.all(
-            const EdgeInsets.symmetric(horizontal: 10),
+            const EdgeInsets.symmetric(horizontal: 14),
           ),
-          backgroundColor: MaterialStateProperty.all(AppColors.grey2),
+          backgroundColor: MaterialStateProperty.all(AppColors.grey3),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),
             ),
           ),
           foregroundColor: MaterialStateProperty.all(AppColors.white),
-          minimumSize: MaterialStateProperty.all(const Size(0, 33))),
+          minimumSize: MaterialStateProperty.all(const Size(0, 42))),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          if (icon != null) Padding(
-            padding: const EdgeInsets.only(right: 8),
-            child: Image.asset(icon.toString(), color: AppColors.white,),
-          ),
+          if (icon != null)
+            Padding(
+              padding: const EdgeInsets.only(right: 10),
+              child: Image.asset(
+                icon.toString(),
+                color: iconColor ?? Colors.transparent,
+                scale: 0.9,
+              ),
+            ),
           Text(
-            text,
-            style: AppTextTheme.title4,
+            subtext != null ? '$text, ' : text,
+            style: AppTextTheme.mapBtnText,
           ),
+          if (subtext != null)
+            Text(
+              subtext,
+              style: AppTextTheme.mapBtnSubtext,
+            ),
         ],
       ),
     );

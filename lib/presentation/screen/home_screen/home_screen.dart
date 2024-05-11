@@ -1,11 +1,22 @@
 part of 'part_home_screen.dart';
 
 @RoutePage()
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatefulWidget implements AutoRouteWrapper {
   const HomeScreen({super.key});
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (BuildContext context) => HomeBloc(offersRepository: locator())
+        ..add(
+          const HomeEvent.getOffers(),
+        ),
+      child: this,
+    );
+  }
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -17,37 +28,70 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.black,
       resizeToAvoidBottomInset: false,
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 28, bottom: 37),
-                child: Center(
-                  child: Text(
-                    'Поиск дешевых \nавиабилетов',
-                    style: AppTextTheme.title1,
-                    textAlign: TextAlign.center,
-                  ),
+        child: BlocBuilder<HomeBloc, HomeState>(
+          builder: (context, state) {
+            if (state.status == Status.initial) {
+              return const Center(
+                child: Text('initial'),
+              );
+            } else if (state.status == Status.loading) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else if (state.status == Status.loaded) {
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 28, bottom: 37),
+                      child: Center(
+                        child: Text(
+                          'Поиск дешевых \nавиабилетов',
+                          style: AppTextTheme.title1,
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+                    const SearchContainer(),
+                    Padding(
+                      padding: const EdgeInsets.only(
+                        top: 32,
+                        bottom: 25,
+                        left: 16,
+                      ),
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text(
+                          'Музыкально отлететь',
+                          style: AppTextTheme.title1,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 250,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.offersList.length,
+                        itemBuilder: (context, index) {
+                          final OffersModel offers = state.offersList[index];
+                          return MusicCard(
+                              id: offers.id,
+                              title: offers.title,
+                              town: offers.town,
+                              price: offers.price,
+                              image: offers.image!);
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              const SearchContainer(),
-              Padding(
-                padding: const EdgeInsets.only(
-                  top: 32,
-                  bottom: 25,
-                  left: 16,
-                ),
-                child: Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    'Музыкально отлететь',
-                    style: AppTextTheme.title1,
-                  ),
-                ),
-              ),
-              const MusicCard(),
-            ],
-          ),
+              );
+            } else {
+              return const Center(
+                child: Text('error'),
+              );
+            }
+          },
         ),
       ),
     );

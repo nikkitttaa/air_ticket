@@ -15,10 +15,16 @@ abstract class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    AllTicketRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const AllTicketScreen(),
+      );
+    },
     HomeRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const HomeScreen(),
+        child: WrappedRoute(child: const HomeScreen()),
       );
     },
     HotelsRoute.name: (routeData) {
@@ -46,9 +52,14 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
     SelectedCountryRoute.name: (routeData) {
+      final args = routeData.argsAs<SelectedCountryRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const SelectedCountryScreen(),
+        child: SelectedCountryScreen(
+          key: args.key,
+          departureController: args.departureController,
+          arrivalController: args.arrivalController,
+        ),
       );
     },
     SubscribeRoute.name: (routeData) {
@@ -58,6 +69,20 @@ abstract class _$AppRouter extends RootStackRouter {
       );
     },
   };
+}
+
+/// generated route for
+/// [AllTicketScreen]
+class AllTicketRoute extends PageRouteInfo<void> {
+  const AllTicketRoute({List<PageRouteInfo>? children})
+      : super(
+          AllTicketRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AllTicketRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
 }
 
 /// generated route for
@@ -132,16 +157,45 @@ class ProfileRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [SelectedCountryScreen]
-class SelectedCountryRoute extends PageRouteInfo<void> {
-  const SelectedCountryRoute({List<PageRouteInfo>? children})
-      : super(
+class SelectedCountryRoute extends PageRouteInfo<SelectedCountryRouteArgs> {
+  SelectedCountryRoute({
+    Key? key,
+    required TextEditingController departureController,
+    required TextEditingController arrivalController,
+    List<PageRouteInfo>? children,
+  }) : super(
           SelectedCountryRoute.name,
+          args: SelectedCountryRouteArgs(
+            key: key,
+            departureController: departureController,
+            arrivalController: arrivalController,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'SelectedCountryRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<SelectedCountryRouteArgs> page =
+      PageInfo<SelectedCountryRouteArgs>(name);
+}
+
+class SelectedCountryRouteArgs {
+  const SelectedCountryRouteArgs({
+    this.key,
+    required this.departureController,
+    required this.arrivalController,
+  });
+
+  final Key? key;
+
+  final TextEditingController departureController;
+
+  final TextEditingController arrivalController;
+
+  @override
+  String toString() {
+    return 'SelectedCountryRouteArgs{key: $key, departureController: $departureController, arrivalController: $arrivalController}';
+  }
 }
 
 /// generated route for

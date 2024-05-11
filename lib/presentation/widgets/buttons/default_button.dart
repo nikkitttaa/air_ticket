@@ -35,15 +35,17 @@ class DefaultButton {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ButtonStyle(
-          backgroundColor: MaterialStateProperty.resolveWith(
-            (states) {
-              if (states.contains(MaterialState.disabled)) {
-                return AppColors.darkBlue;
-              }
-              return AppColors.blue;
-            },
-          ),
-        ),
+            backgroundColor: MaterialStateProperty.resolveWith(
+              (states) {
+                if (states.contains(MaterialState.disabled)) {
+                  return AppColors.darkBlue;
+                }
+                return AppColors.blue;
+              },
+            ),
+            minimumSize: MaterialStateProperty.all(
+              const Size(double.infinity, 48),
+            )),
         child: Text(text, style: AppTextTheme.buttonText),
       ),
     );

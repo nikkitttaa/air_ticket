@@ -8,9 +8,16 @@ class AppTextTheme {
     letterSpacing: 0,
   );
 
-  static const TextStyle title2 = TextStyle(
+  static TextStyle title2 = TextStyle(
     fontWeight: FontWeight.w600,
     fontSize: 20,
+    color: AppColors.white,
+  );
+
+  static TextStyle containerTitle = TextStyle(
+    fontWeight: FontWeight.w600,
+    fontSize: 22,
+    color: AppColors.white,
   );
 
   static TextStyle title3 = TextStyle(
@@ -22,6 +29,18 @@ class AppTextTheme {
   static const TextStyle title4 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 14,
+  );
+
+  static TextStyle mapBtnText = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColors.white,
+  );
+
+  static TextStyle mapBtnSubtext = TextStyle(
+    fontWeight: FontWeight.w500,
+    fontSize: 16,
+    color: AppColors.grey6,
   );
 
   static TextStyle text1 = TextStyle(
@@ -39,7 +58,29 @@ class AppTextTheme {
   static const TextStyle buttonText = TextStyle(
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.italic,
-    fontSize: 16,
+    fontSize: 18,
+  );
+
+  static TextStyle flightsTitle = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    fontSize: 17,
+    color: AppColors.white,
+  );
+
+  static TextStyle flightsPrice = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 17,
+    color: AppColors.blue,
+  );
+
+  static TextStyle flightsSubtitle = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.normal,
+    fontSize: 17,
+    color: AppColors.white,
+    overflow: TextOverflow.ellipsis,
   );
 
   static const TextStyle smallButtonText = TextStyle(
@@ -50,14 +91,16 @@ class AppTextTheme {
 
   static TextStyle unSelectedTabText = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 10,
+    fontSize: 12,
     color: AppColors.grey6,
+    height: 2,
   );
 
   static TextStyle selectedTabText = TextStyle(
     fontWeight: FontWeight.w500,
-    fontSize: 10,
+    fontSize: 12,
     color: AppColors.blue,
+    height: 2,
   );
 
   static TextStyle labelText = TextStyle(

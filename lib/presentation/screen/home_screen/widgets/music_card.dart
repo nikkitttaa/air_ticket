@@ -1,7 +1,20 @@
 part of presentation_home_screen;
 
 class MusicCard extends StatelessWidget {
-  const MusicCard({super.key});
+  const MusicCard({
+    super.key,
+    required this.id,
+    required this.title,
+    required this.town,
+    required this.price,
+    required this.image,
+  });
+
+  final int id;
+  final String title;
+  final String town;
+  final String image;
+  final int price;
 
   @override
   Widget build(BuildContext context) {
@@ -14,8 +27,8 @@ class MusicCard extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.network(
-                'https://i1.sndcdn.com/artworks-nbXEtIsuHFab90iU-mPzLmw-t500x500.jpg',
+              child: Image.asset(
+                image,
                 height: 160,
               ),
             ),
@@ -24,7 +37,7 @@ class MusicCard extends StatelessWidget {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Die Antwoord',
+                  title,
                   style: AppTextTheme.title3,
                 ),
               ),
@@ -32,7 +45,7 @@ class MusicCard extends StatelessWidget {
             Align(
               alignment: Alignment.centerLeft,
               child: Text(
-                'Будапешт',
+                town,
                 style: AppTextTheme.text2,
               ),
             ),
@@ -40,9 +53,12 @@ class MusicCard extends StatelessWidget {
               padding: const EdgeInsets.only(top: 4),
               child: Row(
                 children: [
-                  Image.asset(AppIcons.airTickets, color: AppColors.grey6,),
+                  Image.asset(
+                    AppIcons.airTickets,
+                    color: AppColors.grey6,
+                  ),
                   Text(
-                    'от ' + '22 264 р',
+                    'от $price',
                     style: AppTextTheme.text2,
                   ),
                 ],

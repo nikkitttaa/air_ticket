@@ -24,68 +24,78 @@ class _MainScreenState extends State<MainScreen> {
         ProfileRoute(),
       ],
       builder: (context, child, _) {
-        final tabsRouter = AutoTabsRouter.of(context);
-        int currentIndex = tabsRouter.activeIndex;
+        final tabsRouter = context.tabsRouter;
         return Scaffold(
           backgroundColor: AppColors.black,
           body: child,
-          bottomNavigationBar: BottomNavigationBar(
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: AppColors.black,
-            onTap: tabsRouter.setActiveIndex,
-            showUnselectedLabels: true,
-            selectedFontSize: 10,
-            unselectedFontSize: 10,
-            selectedItemColor: AppColors.blue,
-            unselectedItemColor: AppColors.grey6,
-            selectedLabelStyle: AppTextTheme.selectedTabText,
-            unselectedLabelStyle: AppTextTheme.unSelectedTabText,
-            currentIndex: currentIndex,
-            items: [
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  AppIcons.airTickets,
-                  color: currentIndex == 0 ? AppColors.blue : AppColors.grey6,
-                  height: 24,
-                ),
-                label: 'Авиабилеты',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  AppIcons.hotel,
-                  color: currentIndex == 1 ? AppColors.blue : AppColors.grey6,
-                  height: 24,
-                ),
-                label: 'Отели',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  AppIcons.mark,
-                  color: currentIndex == 2 ? AppColors.blue : AppColors.grey6,
-                  height: 24,
-                ),
-                label: 'Короче',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  AppIcons.subscribe,
-                  color: currentIndex == 3 ? AppColors.blue : AppColors.grey6,
-                  height: 24,
-                ),
-                label: 'Подписки',
-              ),
-              BottomNavigationBarItem(
-                icon: Image.asset(
-                  AppIcons.profile,
-                  color: currentIndex == 4 ? AppColors.blue : AppColors.grey6,
-                  height: 24,
-                ),
-                label: 'Профиль',
-              ),
-            ],
-          ),
+          bottomNavigationBar: BottomNavBar.appBottomNavigationBar(context.tabsRouter.setActiveIndex, context.tabsRouter.activeIndex),
         );
       },
+    );
+  }
+}
+
+class BottomNavBar {
+  static BottomNavigationBar appBottomNavigationBar(Function(int) onTap, int currentIndex) {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      backgroundColor: AppColors.black,
+      onTap: onTap,
+      showUnselectedLabels: true,
+      selectedFontSize: 12,
+      unselectedFontSize: 12,
+      selectedItemColor: AppColors.blue,
+      unselectedItemColor: AppColors.grey6,
+      selectedLabelStyle: AppTextTheme.selectedTabText,
+      unselectedLabelStyle: AppTextTheme.unSelectedTabText,
+      currentIndex: currentIndex,
+      items: [
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            AppIcons.airTickets,
+            color: currentIndex == 0 ? AppColors.blue : AppColors.grey6,
+            scale: 0.9,
+            height: 26,
+          ),
+          label: 'Авиабилеты',
+        ),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            AppIcons.hotel,
+            color: currentIndex == 1 ? AppColors.blue : AppColors.grey6,
+            scale: 0.9,
+            height: 26,
+          ),
+          label: 'Отели',
+        ),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            AppIcons.mark,
+            color: currentIndex == 2 ? AppColors.blue : AppColors.grey6,
+            scale: 0.9,
+            height: 26,
+          ),
+          label: 'Короче',
+        ),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            AppIcons.subscribe,
+            color: currentIndex == 3 ? AppColors.blue : AppColors.grey6,
+            scale: 0.9,
+            height: 26,
+          ),
+          label: 'Подписки',
+        ),
+        BottomNavigationBarItem(
+          icon: Image.asset(
+            AppIcons.profile,
+            color: currentIndex == 4 ? AppColors.blue : AppColors.grey6,
+            scale: 0.9,
+            height: 26,
+          ),
+          label: 'Профиль',
+        ),
+      ],
     );
   }
 }

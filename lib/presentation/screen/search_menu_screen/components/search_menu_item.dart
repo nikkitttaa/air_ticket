@@ -53,7 +53,12 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Стамбул';
                       });
-                      context.router.push(const SelectedCountryRoute());
+                      context.router.push(
+                        SelectedCountryRoute(
+                          departureController: widget.departureController,
+                          arrivalController: widget.arrivalController,
+                        ),
+                      );
                     },
                   ),
                   PopularDestinations(
@@ -64,7 +69,12 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Сочи';
                       });
-                      context.router.push(const SelectedCountryRoute());
+                      context.router.push(
+                        SelectedCountryRoute(
+                          departureController: widget.departureController,
+                          arrivalController: widget.arrivalController,
+                        ),
+                      );
                     },
                   ),
                   PopularDestinations(
@@ -75,7 +85,12 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Пхукет';
                       });
-                      context.router.push(const SelectedCountryRoute());
+                      context.router.push(
+                        SelectedCountryRoute(
+                          departureController: widget.departureController,
+                          arrivalController: widget.arrivalController,
+                        ),
+                      );
                     },
                   ),
                 ],

@@ -66,6 +66,7 @@ class ProfileScreen extends StatelessWidget {
           style: AppTextTheme.title1,
         ),
       ),
+      
     );
   }
 }
