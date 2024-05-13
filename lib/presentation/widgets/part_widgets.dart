@@ -10,6 +10,4 @@ part 'buttons/small_button.dart';
 
 part 'buttons/switch_button.dart';
 
-part 'input.dart';
-
 part 'buttons/icon_button.dart';

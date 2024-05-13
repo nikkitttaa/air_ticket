@@ -1,4 +1,4 @@
-part of presentation_home_screen;
+part of '../part_home_screen.dart';
 
 class MusicCard extends StatelessWidget {
   const MusicCard({

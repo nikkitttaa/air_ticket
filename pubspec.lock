@@ -209,7 +209,7 @@ packages:
     source: hosted
     version: "2.3.6"
   data:
-    dependency: "direct main"
+    dependency: transitive
     description:
       path: data
       relative: true

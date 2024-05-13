@@ -16,9 +16,6 @@ dependencies:
   domain:
     path: ./domain
 
-  data:
-    path: ./data
-
 
   cupertino_icons: ^1.0.6
   auto_route: ^8.1.3

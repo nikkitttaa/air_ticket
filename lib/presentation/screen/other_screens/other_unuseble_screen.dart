@@ -1,4 +1,3 @@
-import 'package:air_tickets/presentation/screen/main_screen/main_screen.dart';
 import 'package:air_tickets/presentation/theme/theme_part.dart';
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';

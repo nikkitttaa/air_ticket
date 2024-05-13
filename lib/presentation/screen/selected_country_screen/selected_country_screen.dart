@@ -63,7 +63,7 @@ class _SelectedCountryScreenState extends State<SelectedCountryScreen> {
                   ),
                   width: double.infinity,
                   child: Padding(
-                    padding: EdgeInsets.all(16),
+                    padding: const EdgeInsets.all(16),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

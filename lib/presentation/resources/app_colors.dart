@@ -1,4 +1,4 @@
-part of presentation_resources;
+part of 'part_resources.dart';
 
 class AppColors {
   static Color black = HexColor.fromHex('#0C0C0C');

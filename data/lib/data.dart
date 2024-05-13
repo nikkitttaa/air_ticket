@@ -1,8 +1,5 @@
 library data;
 
-import 'dart:convert';
-import 'dart:io';
-import 'package:core/core.dart';
 import 'package:domain/domain.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

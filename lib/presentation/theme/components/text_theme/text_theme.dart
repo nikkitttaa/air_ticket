@@ -1,4 +1,4 @@
-part of presentation_theme;
+part of '../../theme_part.dart';
 
 class AppTextTheme {
   static TextStyle title1 = TextStyle(
@@ -6,12 +6,6 @@ class AppTextTheme {
     fontSize: 24,
     color: AppColors.grey7,
     letterSpacing: 0,
-  );
-
-  static TextStyle title2 = TextStyle(
-    fontWeight: FontWeight.w600,
-    fontSize: 20,
-    color: AppColors.white,
   );
 
   static TextStyle containerTitle = TextStyle(

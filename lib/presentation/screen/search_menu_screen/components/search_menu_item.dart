@@ -42,7 +42,7 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
             ),
             width: double.infinity,
             child: Padding(
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               child: Column(
                 children: [
                   PopularDestinations(

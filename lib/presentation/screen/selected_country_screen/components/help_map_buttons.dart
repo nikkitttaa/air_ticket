@@ -1,17 +1,17 @@
 part of '../part_selected_country.dart';
 
 class HelpMapButtons extends StatefulWidget {
-  HelpMapButtons({
+   HelpMapButtons({
     super.key,
     required this.now,
     required this.dayOfMonth,
     required this.dayOfWeek,
   });
 
-  DateTime now;
+   DateTime now;
 
-  String dayOfMonth;
-  String dayOfWeek;
+   String dayOfMonth;
+   String dayOfWeek;
 
   @override
   State<HelpMapButtons> createState() => _HelpMapButtonsState();

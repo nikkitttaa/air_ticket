@@ -1,4 +1,4 @@
-part of data;
+part of '../data.dart';
 
 @freezed
 class OffersDTO with _$OffersDTO {

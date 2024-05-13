@@ -1,4 +1,4 @@
-part of presentation_widgets;
+part of '../part_widgets.dart';
 
 class SwitchButton extends StatelessWidget {
   const SwitchButton({

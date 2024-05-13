@@ -1,4 +1,4 @@
-part of presentation_widgets;
+part of '../part_widgets.dart';
 
 class DefaultButton {
   static Container black({

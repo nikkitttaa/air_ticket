@@ -1,4 +1,4 @@
-part of presentation_all_ticket;
+part of '../part_all_ticket.dart';
 
 class TicketItem extends StatelessWidget {
   const TicketItem({

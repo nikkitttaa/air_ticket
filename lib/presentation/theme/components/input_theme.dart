@@ -1,4 +1,4 @@
-part of presentation_theme;
+part of '../theme_part.dart';
 
 class BaseInputDecoration {
   static InputDecoration getInputDecoration({
