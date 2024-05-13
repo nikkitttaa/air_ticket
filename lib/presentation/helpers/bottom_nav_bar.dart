@@ -4,46 +4,35 @@ import 'package:air_tickets/presentation/theme/theme_part.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
-@RoutePage()
-class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
-  @override
-  State<MainScreen> createState() => _MainScreenState();
-}
-
-class _MainScreenState extends State<MainScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return AutoTabsRouter.pageView(
-      routes: const [
-        HomeRoute(),
-        HotelsRoute(),
-        MarkRoute(),
-        SubscribeRoute(),
-        ProfileRoute(),
-      ],
-      builder: (context, child, _) {
-        final tabsRouter = context.tabsRouter;
-        return Scaffold(
-          backgroundColor: AppColors.black,
-          body: child,
-          bottomNavigationBar: BottomNavBar.appBottomNavigationBar(
-            tabsRouter.setActiveIndex,
-            tabsRouter.activeIndex,
-          ),
-        );
-      },
-    );
-  }
-}
-
-class BottomNavBar {
-  static BottomNavigationBar appBottomNavigationBar(Function(int) onTap, int currentIndex) {
+class AppBottomNavBar {
+  static BottomNavigationBar appBottomNavigationBar(int currentIndex, BuildContext context) {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
       backgroundColor: AppColors.black,
-      onTap: onTap,
+      onTap: (index) {
+        switch (index) {
+          case 0:
+            FocusScope.of(context).unfocus();
+            context.router.replaceAll([const HomeRoute()]);
+            break;
+          case 1:
+            FocusScope.of(context).unfocus();
+            context.router.replaceAll([const HotelsRoute()]);
+            break;
+          case 2:
+            FocusScope.of(context).unfocus();
+            context.router.replaceAll([const MarkRoute()]);
+            break;
+          case 3:
+            FocusScope.of(context).unfocus();
+            context.router.replaceAll([const SubscribeRoute()]);
+            break;
+          case 4:
+            FocusScope.of(context).unfocus();
+            context.router.replaceAll([const ProfileRoute()]);
+            break;
+        }
+      },
       showUnselectedLabels: true,
       selectedFontSize: 12,
       unselectedFontSize: 12,

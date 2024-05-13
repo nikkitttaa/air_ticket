@@ -23,10 +23,10 @@ class SmallButton {
         children: [
           Row(
             children: [
-              Image.asset(AppIcons.filter),
-              const Text(
+              Image.asset(AppIcons.filter, scale: 0.9,),
+              Text(
                 'Фильтр',
-                style: AppTextTheme.title4,
+                style: AppButtonTextTheme.filter,
               )
             ],
           ),
@@ -35,10 +35,10 @@ class SmallButton {
           ),
           Row(
             children: [
-              Image.asset(AppIcons.graph),
-              const Text(
+              Image.asset(AppIcons.graph, scale: 0.9,),
+               Text(
                 'График цен',
-                style: AppTextTheme.title4,
+                style: AppButtonTextTheme.filter,
               )
             ],
           )

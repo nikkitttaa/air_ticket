@@ -68,6 +68,13 @@ class AppTextTheme {
     color: AppColors.white,
   );
 
+  static TextStyle allTicketSubtitle = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontStyle: FontStyle.italic,
+    fontSize: 16,
+    color: AppColors.grey6,
+  );
+
   static TextStyle flightsPrice = TextStyle(
     fontWeight: FontWeight.w400,
     fontStyle: FontStyle.normal,

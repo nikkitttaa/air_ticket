@@ -1,7 +1,7 @@
 part of 'part_selected_country.dart';
 
 @RoutePage()
-class SelectedCountryScreen extends StatelessWidget {
+class SelectedCountryScreen extends StatefulWidget {
   const SelectedCountryScreen({
     super.key,
     required this.departureController,
@@ -12,19 +12,44 @@ class SelectedCountryScreen extends StatelessWidget {
   final TextEditingController arrivalController;
 
   @override
+  State<SelectedCountryScreen> createState() => _SelectedCountryScreenState();
+}
+
+class _SelectedCountryScreenState extends State<SelectedCountryScreen> {
+  late DateTime now;
+
+  late String dayOfMonth;
+  late String dayOfWeek;
+
+  @override
+  void initState() {
+    now = DateTime.now();
+
+    dayOfMonth = DateFormat('d MMM', 'ru').format(now);
+    dayOfWeek = DateFormat.E('ru').format(now);
+
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.only(top: 40),
           child: Column(
             children: [
               SearchSelectedCountryContainer(
-                departureController: departureController,
-                arrivalController: arrivalController,
+                departureController: widget.departureController,
+                arrivalController: widget.arrivalController,
               ),
-              const HelpMapButtons(),
+              HelpMapButtons(
+                now: now,
+                dayOfMonth: dayOfMonth,
+                dayOfWeek: dayOfWeek,
+              ),
               Center(
                 child: Container(
                   margin: const EdgeInsets.only(
@@ -77,14 +102,24 @@ class SelectedCountryScreen extends StatelessWidget {
               ),
               Padding(
                 padding: const EdgeInsets.only(top: 24),
-                child: DefaultButton.blue(onPressed: () {
-                  context.router.push(const AllTicketRoute());
-                }, text: 'Посмотреть все билеты'),
+                child: DefaultButton.blue(
+                    onPressed: () {
+                      context.router.push(
+                        AllTicketRoute(
+                          departureController: widget.departureController,
+                          arrivalController: widget.arrivalController,
+                          touristCount: '1 пассажир',
+                          date: dayOfMonth,
+                        ),
+                      );
+                    },
+                    text: 'Посмотреть все билеты'),
               ),
             ],
           ),
         ),
       ),
+      bottomNavigationBar: AppBottomNavBar.appBottomNavigationBar(0, context),
     );
   }
 }

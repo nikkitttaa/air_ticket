@@ -1,28 +1,23 @@
 part of '../part_selected_country.dart';
 
 class HelpMapButtons extends StatefulWidget {
-  const HelpMapButtons({super.key});
+  HelpMapButtons({
+    super.key,
+    required this.now,
+    required this.dayOfMonth,
+    required this.dayOfWeek,
+  });
+
+  DateTime now;
+
+  String dayOfMonth;
+  String dayOfWeek;
 
   @override
   State<HelpMapButtons> createState() => _HelpMapButtonsState();
 }
 
 class _HelpMapButtonsState extends State<HelpMapButtons> {
-  late DateTime now;
-
-  late String dayOfMonth;
-  late String dayOfWeek;
-
-  @override
-  void initState() {
-    now = DateTime.now();
-
-    dayOfMonth = DateFormat('d MMM', 'ru').format(now);
-    dayOfWeek = DateFormat.E('ru').format(now);
-
-    super.initState();
-  }
-
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
       context: context,
@@ -32,9 +27,9 @@ class _HelpMapButtonsState extends State<HelpMapButtons> {
     );
     if (picked != null) {
       setState(() {
-        now = picked;
-        dayOfMonth = DateFormat('d MMM', 'ru').format(now);
-        dayOfWeek = DateFormat.E('ru').format(now);
+        widget.now = picked;
+        widget.dayOfMonth = DateFormat('d MMM', 'ru').format(widget.now);
+        widget.dayOfWeek = DateFormat.E('ru').format(widget.now);
       });
     }
   }
@@ -60,8 +55,8 @@ class _HelpMapButtonsState extends State<HelpMapButtons> {
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: SmallButton.map(
                 onPressed: () => _selectDate(context),
-                text: dayOfMonth,
-                subtext: dayOfWeek,
+                text: widget.dayOfMonth,
+                subtext: widget.dayOfWeek,
               ),
             ),
             Padding(

@@ -37,7 +37,7 @@ class _SearchMenuScreenState extends State<SearchMenuScreen> with SingleTickerPr
           GestureDetector(
             onVerticalDragUpdate: (details) {
               if (details.primaryDelta! > 0) {
-                Navigator.pop(context);
+                context.maybePop(const HomeRoute());
               }
             },
             child: Container(

@@ -53,6 +53,7 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Стамбул';
                       });
+                      context.router.maybePop([const HomeRoute()]);
                       context.router.push(
                         SelectedCountryRoute(
                           departureController: widget.departureController,
@@ -69,6 +70,7 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Сочи';
                       });
+                      context.router.maybePop([const HomeRoute()]);
                       context.router.push(
                         SelectedCountryRoute(
                           departureController: widget.departureController,
@@ -85,6 +87,7 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
                       setState(() {
                         widget.arrivalController.text = 'Пхукет';
                       });
+                      context.router.maybePop([const HomeRoute()]);
                       context.router.push(
                         SelectedCountryRoute(
                           departureController: widget.departureController,

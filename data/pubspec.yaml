@@ -27,6 +27,3 @@ dev_dependencies:
 
 flutter:
   assets:
-    - ../assets/json/offers.json
-    - ../assets/json/offers_tickets.json
-    - ../assets/json/tickets.json

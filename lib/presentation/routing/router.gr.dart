@@ -16,9 +16,16 @@ abstract class _$AppRouter extends RootStackRouter {
   @override
   final Map<String, PageFactory> pagesMap = {
     AllTicketRoute.name: (routeData) {
+      final args = routeData.argsAs<AllTicketRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const AllTicketScreen(),
+        child: AllTicketScreen(
+          key: args.key,
+          departureController: args.departureController,
+          arrivalController: args.arrivalController,
+          touristCount: args.touristCount,
+          date: args.date,
+        ),
       );
     },
     HomeRoute.name: (routeData) {
@@ -73,16 +80,55 @@ abstract class _$AppRouter extends RootStackRouter {
 
 /// generated route for
 /// [AllTicketScreen]
-class AllTicketRoute extends PageRouteInfo<void> {
-  const AllTicketRoute({List<PageRouteInfo>? children})
-      : super(
+class AllTicketRoute extends PageRouteInfo<AllTicketRouteArgs> {
+  AllTicketRoute({
+    Key? key,
+    required TextEditingController departureController,
+    required TextEditingController arrivalController,
+    required String touristCount,
+    required String date,
+    List<PageRouteInfo>? children,
+  }) : super(
           AllTicketRoute.name,
+          args: AllTicketRouteArgs(
+            key: key,
+            departureController: departureController,
+            arrivalController: arrivalController,
+            touristCount: touristCount,
+            date: date,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'AllTicketRoute';
 
-  static const PageInfo<void> page = PageInfo<void>(name);
+  static const PageInfo<AllTicketRouteArgs> page =
+      PageInfo<AllTicketRouteArgs>(name);
+}
+
+class AllTicketRouteArgs {
+  const AllTicketRouteArgs({
+    this.key,
+    required this.departureController,
+    required this.arrivalController,
+    required this.touristCount,
+    required this.date,
+  });
+
+  final Key? key;
+
+  final TextEditingController departureController;
+
+  final TextEditingController arrivalController;
+
+  final String touristCount;
+
+  final String date;
+
+  @override
+  String toString() {
+    return 'AllTicketRouteArgs{key: $key, departureController: $departureController, arrivalController: $arrivalController, touristCount: $touristCount, date: $date}';
+  }
 }
 
 /// generated route for
