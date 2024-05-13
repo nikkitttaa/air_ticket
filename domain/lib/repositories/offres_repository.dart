@@ -1,5 +1,5 @@
 part of '../domain.dart';
 
-abstract class OffersRepository{
-  Future<List<OffersModel>> fetchOffers();
+abstract class OffersRepository {
+  Future<List<OffersModel>> getOffers();
 }

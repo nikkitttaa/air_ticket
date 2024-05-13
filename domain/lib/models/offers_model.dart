@@ -1,12 +1,13 @@
 part of '../domain.dart';
 
 @freezed
-class OffersModel with _$OffersModel{
+class OffersModel with _$OffersModel {
   const factory OffersModel({
     required int id,
     required String title,
     required String town,
-    required int price,
+    required PriceModel? price,
     String? image,
   }) = _OffersModel;
 }
+

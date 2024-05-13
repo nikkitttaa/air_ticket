@@ -16,5 +16,26 @@ Future<void> initializeDependencies() async {
       ),
   );
 
-  locator.registerLazySingleton<OffersRepository>(() => OffersMockRepository());
+  locator
+    ..registerLazySingleton<OffersRepository>(
+      () => OffersRepositoryImpl(
+        service: OffersService(
+          locator(),
+        ),
+      ),
+    )
+    ..registerLazySingleton<TicketsRepository>(
+      () => TicketsRepositoryImpl(
+        service: TicketsService(
+          locator(),
+        ),
+      ),
+    )
+    ..registerLazySingleton<TicketsOffersRepository>(
+      () => TicketsOffersRepositoryImpl(
+        service: TicketsOffersService(
+          locator(),
+        ),
+      ),
+    );
 }

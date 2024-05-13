@@ -8,4 +8,4 @@ import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 
 part 'di/di.dart';
 
-
+part 'resources/app_const.dart';

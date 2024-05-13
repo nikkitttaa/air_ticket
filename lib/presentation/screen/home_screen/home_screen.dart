@@ -22,6 +22,12 @@ class HomeScreen extends StatefulWidget implements AutoRouteWrapper {
 class _HomeScreenState extends State<HomeScreen> {
   bool value = false;
 
+  List<String> images = [
+    'assets/images/image1.png',
+    'assets/images/image2.png',
+    'assets/images/image3.png',
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -78,8 +84,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               id: offers.id,
                               title: offers.title,
                               town: offers.town,
-                              price: offers.price,
-                              image: offers.image!);
+                              price: offers.price!.value,
+                              image: images[index]);
                         },
                       ),
                     ),

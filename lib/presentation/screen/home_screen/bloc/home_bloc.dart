@@ -11,28 +11,19 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     _GetOffers event,
     Emitter<HomeState> emit,
   ) async {
-    try {
-      emit(
-        state.copyWith(
-          status: Status.loading,
-        ),
-      );
+    emit(
+      state.copyWith(
+        status: Status.loading,
+      ),
+    );
 
-      final offersList = await offersRepository.fetchOffers();
+    final offersList = await offersRepository.getOffers();
 
-      emit(
-        state.copyWith(
-          status: Status.loaded,
-          offersList: offersList,
-        ),
-      );
-
-    } catch (_) {
-      emit(
-        state.copyWith(
-          status: Status.error,
-        ),
-      );
-    }
+    emit(
+      state.copyWith(
+        status: Status.loaded,
+        offersList: offersList,
+      ),
+    );
   }
 }

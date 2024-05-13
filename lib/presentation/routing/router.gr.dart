@@ -62,11 +62,12 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<SelectedCountryRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: SelectedCountryScreen(
+        child: WrappedRoute(
+            child: SelectedCountryScreen(
           key: args.key,
           departureController: args.departureController,
           arrivalController: args.arrivalController,
-        ),
+        )),
       );
     },
     SubscribeRoute.name: (routeData) {

@@ -1,7 +1,7 @@
 part of 'part_selected_country.dart';
 
 @RoutePage()
-class SelectedCountryScreen extends StatefulWidget {
+class SelectedCountryScreen extends StatefulWidget implements AutoRouteWrapper {
   const SelectedCountryScreen({
     super.key,
     required this.departureController,
@@ -13,6 +13,17 @@ class SelectedCountryScreen extends StatefulWidget {
 
   @override
   State<SelectedCountryScreen> createState() => _SelectedCountryScreenState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (BuildContext context) => SelectedCountryBloc(ticketsOffersRepository: locator())
+        ..add(
+          const SelectedCountryEvent.getTicketsOffers(),
+        ),
+      child: this,
+    );
+  }
 }
 
 class _SelectedCountryScreenState extends State<SelectedCountryScreen> {
@@ -36,89 +47,32 @@ class _SelectedCountryScreenState extends State<SelectedCountryScreen> {
     return Scaffold(
       backgroundColor: AppColors.black,
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 40),
-          child: Column(
-            children: [
-              SearchSelectedCountryContainer(
+      body: SafeArea(child: BlocBuilder<SelectedCountryBloc, SelectedCountryState>(
+        builder: (BuildContext context, state) {
+          if (state.status == Status.initial) {
+            return const Center(
+              child: Text('initial'),
+            );
+          } else if (state.status == Status.loading) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state.status == Status.loaded) {
+            final List ticketsOffers = state.ticketsOffersList;
+            return SingleChildScrollView(
+              child: SelectedCountryBody(
                 departureController: widget.departureController,
                 arrivalController: widget.arrivalController,
+                ticketsOffers: ticketsOffers,
               ),
-              HelpMapButtons(
-                now: now,
-                dayOfMonth: dayOfMonth,
-                dayOfWeek: dayOfWeek,
-              ),
-              Center(
-                child: Container(
-                  margin: const EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                    top: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: AppColors.grey1,
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  width: double.infinity,
-                  child: Padding(
-                    padding: const EdgeInsets.all(16),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Прямые рельсы',
-                          style: AppTextTheme.containerTitle,
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        FlightsItem(
-                          title: 'Уральские авиалинии',
-                          description: '07:00 09:10 10:00 11:00 12:00 13:00 14:00',
-                          onTap: () {},
-                          price: 2390,
-                          iconColor: AppColors.red,
-                        ),
-                        FlightsItem(
-                          title: 'Уральские авиалинии',
-                          description: '07:00 09:10 10:00 11:00 12:00 13:00 14:00',
-                          onTap: () {},
-                          price: 5000,
-                          iconColor: AppColors.blue,
-                        ),
-                        FlightsItem(
-                          title: 'Уральские авиалинии',
-                          description: '07:00 09:10 10:00 11:00 12:00 13:00 14:00',
-                          onTap: () {},
-                          price: 5000,
-                          iconColor: AppColors.white,
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 24),
-                child: DefaultButton.blue(
-                    onPressed: () {
-                      context.router.push(
-                        AllTicketRoute(
-                          departureController: widget.departureController,
-                          arrivalController: widget.arrivalController,
-                          touristCount: '1 пассажир',
-                          date: dayOfMonth,
-                        ),
-                      );
-                    },
-                    text: 'Посмотреть все билеты'),
-              ),
-            ],
-          ),
-        ),
-      ),
+            );
+          } else {
+            return const Center(
+              child: Text('error'),
+            );
+          }
+        },
+      ),),
       bottomNavigationBar: AppBottomNavBar.appBottomNavigationBar(0, context),
     );
   }
