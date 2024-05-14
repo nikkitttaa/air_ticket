@@ -59,7 +59,7 @@ class SmallButton {
           padding: MaterialStateProperty.all(
             const EdgeInsets.symmetric(horizontal: 10),
           ),
-          backgroundColor: MaterialStateProperty.all(AppColors.blue),
+          backgroundColor: MaterialStateProperty.all(btnColor),
           shape: MaterialStateProperty.all(
             RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(50),

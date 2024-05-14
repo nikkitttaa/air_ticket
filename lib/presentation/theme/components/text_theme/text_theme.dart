@@ -20,6 +20,12 @@ class AppTextTheme {
     color: AppColors.white,
   );
 
+  static TextStyle title2 = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontSize: 18,
+    color: AppColors.white,
+  );
+
   static const TextStyle title4 = TextStyle(
     fontWeight: FontWeight.w500,
     fontSize: 14,

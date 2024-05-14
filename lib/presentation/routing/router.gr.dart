@@ -19,13 +19,14 @@ abstract class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<AllTicketRouteArgs>();
       return AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: AllTicketScreen(
+        child: WrappedRoute(
+            child: AllTicketScreen(
           key: args.key,
           departureController: args.departureController,
           arrivalController: args.arrivalController,
           touristCount: args.touristCount,
           date: args.date,
-        ),
+        )),
       );
     },
     HomeRoute.name: (routeData) {
@@ -52,6 +53,12 @@ abstract class _$AppRouter extends RootStackRouter {
         child: const MarkScreen(),
       );
     },
+    PlaceHolderRoute.name: (routeData) {
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const PlaceHolderScreen(),
+      );
+    },
     ProfileRoute.name: (routeData) {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
@@ -74,6 +81,19 @@ abstract class _$AppRouter extends RootStackRouter {
       return AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const SubscribeScreen(),
+      );
+    },
+    TicketRoute.name: (routeData) {
+      final args = routeData.argsAs<TicketRouteArgs>();
+      return AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: WrappedRoute(
+            child: TicketScreen(
+          key: args.key,
+          index: args.index,
+          departureController: args.departureController,
+          arrivalController: args.arrivalController,
+        )),
       );
     },
   };
@@ -189,6 +209,20 @@ class MarkRoute extends PageRouteInfo<void> {
 }
 
 /// generated route for
+/// [PlaceHolderScreen]
+class PlaceHolderRoute extends PageRouteInfo<void> {
+  const PlaceHolderRoute({List<PageRouteInfo>? children})
+      : super(
+          PlaceHolderRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'PlaceHolderRoute';
+
+  static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
 /// [ProfileScreen]
 class ProfileRoute extends PageRouteInfo<void> {
   const ProfileRoute({List<PageRouteInfo>? children})
@@ -257,4 +291,51 @@ class SubscribeRoute extends PageRouteInfo<void> {
   static const String name = 'SubscribeRoute';
 
   static const PageInfo<void> page = PageInfo<void>(name);
+}
+
+/// generated route for
+/// [TicketScreen]
+class TicketRoute extends PageRouteInfo<TicketRouteArgs> {
+  TicketRoute({
+    Key? key,
+    required int index,
+    required TextEditingController departureController,
+    required TextEditingController arrivalController,
+    List<PageRouteInfo>? children,
+  }) : super(
+          TicketRoute.name,
+          args: TicketRouteArgs(
+            key: key,
+            index: index,
+            departureController: departureController,
+            arrivalController: arrivalController,
+          ),
+          initialChildren: children,
+        );
+
+  static const String name = 'TicketRoute';
+
+  static const PageInfo<TicketRouteArgs> page = PageInfo<TicketRouteArgs>(name);
+}
+
+class TicketRouteArgs {
+  const TicketRouteArgs({
+    this.key,
+    required this.index,
+    required this.departureController,
+    required this.arrivalController,
+  });
+
+  final Key? key;
+
+  final int index;
+
+  final TextEditingController departureController;
+
+  final TextEditingController arrivalController;
+
+  @override
+  String toString() {
+    return 'TicketRouteArgs{key: $key, index: $index, departureController: $departureController, arrivalController: $arrivalController}';
+  }
 }

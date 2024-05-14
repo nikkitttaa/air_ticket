@@ -24,10 +24,32 @@ class _SearchMenuItemState extends State<SearchMenuItem> {
           arrivalController: widget.arrivalController,
         ),
         HelpButtons(
-          difficultRoutePressed: () {},
-          anywherePressed: () {},
-          weekendPressed: () {},
-          hotTicketsPressed: () {},
+          difficultRoutePressed: () {
+            context.router.push(
+              const PlaceHolderRoute(),
+            );
+          },
+          anywherePressed: () {
+            setState(() {
+              widget.arrivalController.text = 'Куда угодно';
+            });
+            context.router.push(
+              SelectedCountryRoute(
+                departureController: widget.departureController,
+                arrivalController: widget.arrivalController,
+              ),
+            );
+          },
+          weekendPressed: () {
+            context.router.push(
+              const PlaceHolderRoute(),
+            );
+          },
+          hotTicketsPressed: () {
+            context.router.push(
+              const PlaceHolderRoute(),
+            );
+          },
         ),
         Center(
           child: Container(

@@ -82,7 +82,15 @@ class AllTicketBody extends StatelessWidget {
                   departureCode: ticket.departure!.airport,
                   arrivalCode: ticket.arrival!.airport,
                   iconColor: AppColors.red,
-                  onTap: () {},
+                  onTap: () {
+                    context.router.push(
+                      TicketRoute(
+                        index: index,
+                        departureController: departureController,
+                        arrivalController: arrivalController,
+                      ),
+                    );
+                  },
                   timeToTime: '$departureTime - $arrivalTime',
                   transfer: ticket.hasTransfer == false ? 'Без пересадок' : null,
                   badge: ticket.badge,
@@ -90,7 +98,9 @@ class AllTicketBody extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: 36,)
+          const SizedBox(
+            height: 36,
+          )
         ],
       ),
     );
